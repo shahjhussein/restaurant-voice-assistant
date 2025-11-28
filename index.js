@@ -445,10 +445,14 @@ function askFinalMessageAndHangup(openAiWs, connection, streamSid) {
     }, 1500); // wait 1.5 seconds for message playback
 }
 
-fastify.listen({ port: PORT }, (err) => {
-    if (err) {
-        console.error(err);
-        process.exit(1);
+fastify.listen(
+    { port: PORT, host: "0.0.0.0" },
+    (err) => {
+        if (err) {
+            console.error(err);
+            process.exit(1);
+        }
+        console.log(`Server is listening on port ${PORT}`);
     }
-    console.log(`Server is listening on port ${PORT}`);
-});
+);
+
