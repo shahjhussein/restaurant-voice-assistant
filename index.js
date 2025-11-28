@@ -88,19 +88,23 @@ fastify.all('/incoming-call', async (request, reply) => {
     const twimlResponse = `<?xml version="1.0" encoding="UTF-8"?>
 <Response>
   <Say voice="Google.en-US-Chirp3-HD-Aoede">
-    Please wait while we connect your call to the A. I. voice assistant, powered by Twilio and the Open A I Realtime API
+    Please wait while we connect your call powered by Syntropy AI.
   </Say>
+
   <Pause length="1"/>
+
   <Say voice="Google.en-US-Chirp3-HD-Aoede">
-    O.K. you can start talking!
+    Okay, you can start talking!
   </Say>
+
   <Connect>
-    <Stream url="wss://${request.headers.host}/media-stream" />
+    <Stream url="wss://restaurant-voice-assistant-0gl9.onrender.com/media-stream"/>
   </Connect>
 </Response>`;
 
     reply.type('text/xml').send(twimlResponse);
 });
+
 
 // WebSocket route for media-stream
 fastify.register(async (fastify) => {
